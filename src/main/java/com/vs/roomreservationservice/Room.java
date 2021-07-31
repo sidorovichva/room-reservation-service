@@ -1,7 +1,6 @@
 package com.vs.roomreservationservice;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 @Data
 public class Room {

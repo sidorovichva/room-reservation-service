@@ -16,11 +16,12 @@ import java.util.List;
 @RequestMapping("room-reservations")
 @RequiredArgsConstructor
 public class RoomReservationWebService {
-    private final RestTemplate restTemplate;
+
+    private final RoomClient roomClient;
 
     @GetMapping
     public List<RoomReservation> getRoomReservations() {
-        List<Room> rooms = this.getAllRooms();
+        List<Room> rooms = this.roomClient.getAllRooms();
         List<RoomReservation> roomReservations = new ArrayList<>();
         rooms.forEach(room -> {
             RoomReservation roomReservation = new RoomReservation();
@@ -30,15 +31,5 @@ public class RoomReservationWebService {
             roomReservations.add(roomReservation);
         });
         return roomReservations;
-    }
-
-    public List<Room> getAllRooms() {
-        ResponseEntity<List<Room>> roomResponse = this.restTemplate.exchange(
-                "http://ROOMSERVICES/rooms",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<Room>>() {}
-        );
-        return roomResponse.getBody();
     }
 }
