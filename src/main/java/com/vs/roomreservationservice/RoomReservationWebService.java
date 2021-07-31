@@ -34,7 +34,7 @@ public class RoomReservationWebService {
 
     public List<Room> getAllRooms() {
         ResponseEntity<List<Room>> roomResponse = this.restTemplate.exchange(
-                "http://ROOMSERVICES/room",
+                "http://ROOMSERVICES/rooms",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Room>>() {}
